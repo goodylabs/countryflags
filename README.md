@@ -1,5 +1,3 @@
 # Country flags
 
-mirror of CountryFlags.io
-
-
+mirror of https://www.countryflags.io/
