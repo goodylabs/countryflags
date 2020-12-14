@@ -1,1 +1,5 @@
-# countryflags
+# Country flags
+
+mirror of CountryFlags.io
+
+
