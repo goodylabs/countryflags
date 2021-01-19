@@ -1,12 +1,14 @@
 #!/bin/bash
 
 DEST_DIR="32x32"
-DEST_DIR_64x64="64x64"
+DEST_DIR_64="64x64"
 SIZE="32"
 SIZE_64="64"
 ENDPOINT="https://www.countryflags.io/"
 
+CP=`which cp`
 CURL="`which curl` -s "
+MKDIR=`which mkdir`
 
 COUNTRIES=( \
 "ad" \
@@ -267,13 +269,16 @@ COUNTRIES=( \
 "zw" \
 )
 
+${MKDIR} -p ${DEST_DIR} ${DEST_DIR_64}
+
 for country_code in "${COUNTRIES[@]}"; do
   echo "Getting ${country_code}..."
-  ${CURL} "${ENDPOINT}/${country_code}/flat/${SIZE}.png" -o "${DEST_DIR}/${country_code}.png"
-  mkdir -p "${country_code}/flat/"
+  ${MKDIR} -p "${country_code}/flat/"
   echo "   size: 32x32xpx..."
-  ${CURL} "${ENDPOINT}/${country_code}/flat/${SIZE}.png" -o "${country_code}/flat/${SIZE}.png"
+  ${CURL} "${ENDPOINT}/${country_code}/flat/${SIZE}.png" -o "${DEST_DIR}/${country_code}.png"
+  ${CP} "${DEST_DIR}/${country_code}.png" "${country_code}/flat/${SIZE}.png"
   echo "    size: 64x64px..."
   ${CURL} "${ENDPOINT}/${country_code}/flat/${SIZE_64}.png" -o "${country_code}/flat/${SIZE_64}.png"
+  ${CP} "${country_code}/flat/${SIZE_64}.png" "${DEST_DIR_64}/${country_code}.png"
 done
 
