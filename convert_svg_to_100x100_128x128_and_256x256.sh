@@ -7,9 +7,8 @@ MV=`which mv`
 RM=`which rm`
 RSVG_CONVERT=`which rsvg-convert`
 
-FLAG_WIDTHS=(120 240)
-WIDTHS=(128 256)
-
+FLAG_WIDTHS=(92 120 240)
+WIDTHS=(100 128 256)
 
 idx=0
 
